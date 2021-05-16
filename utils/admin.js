@@ -15,7 +15,7 @@ AdminUtil.login = async (user) => {
             password:user.password
         })
     } catch (error) {
-        return error
+        throw error
     }
 }
 

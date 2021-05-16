@@ -10,7 +10,7 @@ PartUtil.getAll = async () => {
     try {
         return await Part.find()
     } catch (error) {
-        return error
+        throw error
     }
 }
 
@@ -22,7 +22,7 @@ PartUtil.addOne = async (data) => {
     try {
         return await new Part(data).save()
     } catch (error) {
-        return error
+        throw error
     }
 }
 

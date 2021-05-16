@@ -11,7 +11,7 @@ const OrderUtil = {}
     try {
         return await Order.find()
     } catch (error) {
-        return error
+        throw error
     }
 }
 
@@ -79,7 +79,7 @@ OrderUtil.delOne = async (data) => {
     try {
         return await Order.deleteOne({id: data.id})
     } catch (error) {
-        return error
+        throw error
     }
 }
 
@@ -95,7 +95,7 @@ OrderUtil.addMany = async (datas) => {
         })
         return {}
     } catch (error) {
-        return error
+        throw error
     }
 }
 

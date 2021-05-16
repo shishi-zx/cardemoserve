@@ -10,7 +10,7 @@ const CarUtil = {}
     try {
         return await Car.find()
     } catch (error) {
-        return error
+        throw error
     }
 }
 
@@ -23,7 +23,7 @@ CarUtil.addOne = async (data) => {
     try {
         return await new Car(data).save()
     } catch (error) {
-        return error
+        throw error
     }
 }
 

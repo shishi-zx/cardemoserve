@@ -11,8 +11,7 @@ router.post('/admin/login', async (req, res) => {
     var body = req.body
     try {
         const result =  await Admin.login(body)
-        if(result == null)
-        return res.json({
+        if(result == null)return res.json({
             code:1,
             message:'用户名或者密码错误',
             data: null

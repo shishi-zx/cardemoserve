@@ -10,7 +10,7 @@ WorkerUtil.getAll = async () => {
     try {
         return await Worker.find()
     } catch (error) {
-        return eooro
+        throw eooro
     }
 }
 
@@ -23,7 +23,7 @@ WorkerUtil.addOne = async (data) => {
     try {
         return await new Worker(data).save()
     } catch (error) {
-        return error
+        throw error
     }
 }
 
@@ -36,7 +36,7 @@ WorkerUtil.delOne = async (data) => {
     try {
         return await Worker.deleteOne({id: data.id})
     } catch (error) {
-        return error
+        throw error
     }
 }
 
@@ -49,7 +49,7 @@ WorkerUtil.updOne = async (data) => {
     try {
         return await Worker.updateOne({id: data.id}, data)
     } catch (error) {
-        return error
+        throw error
     }
 }
 
