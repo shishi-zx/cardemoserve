@@ -1,5 +1,6 @@
 //封装对汽车的操作
 const {Car} = require('../models')
+const PartUtil = require("../utils/part")
 const CarUtil = {}
 
 /**
@@ -21,6 +22,8 @@ const CarUtil = {}
  */
 CarUtil.addOne = async (data) => {
     try {
+        //组装车辆消耗组件库存
+        await PartUtil.queryStories()//如果组件库存不够会抛出异常
         return await new Car(data).save()
     } catch (error) {
         throw error

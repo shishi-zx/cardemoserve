@@ -26,4 +26,26 @@ PartUtil.addOne = async (data) => {
     }
 }
 
+/**
+ * 检查组件是否足够，如果足够则消耗一套组件
+ */
+PartUtil.queryStories = async () => {
+    try {
+        //检查是否每种组件都有库存
+        const str = ['发动机配件','传动系配件','制动系配件','电器仪表系配件','汽车灯具','安全防盗','汽车外饰','影音电器','化工护理','车身及附件']
+        for(let i = 0; i<str.length;i++){
+            let result = await Part.find({type:str[i]})
+            let num = result.length
+            if(num<1)throw Error
+        }
+        //组件足够则消耗一套组件
+        for(let i = 0; i<str.length;i++){
+            let result = await Part.deleteOne({type:str[i]})
+        }
+        return null
+    } catch (error) {
+        throw Error
+    }
+}
+
 module.exports = PartUtil

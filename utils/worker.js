@@ -1,4 +1,5 @@
 //封装对员工的操作
+const { data } = require('jquery')
 const {Worker} = require('../models')
 const WorkerUtil = {}
 
@@ -53,4 +54,32 @@ WorkerUtil.updOne = async (data) => {
     }
 }
 
+/**
+ * 员工登录验证
+ * @param {Object} worker 
+ */
+WorkerUtil.login = async (worker) => {
+    try {
+        const result = await Worker.findOne({name:worker.name,password:worker.password})
+        if(result == null)throw Error
+        return result
+    } catch (error) {
+        throw Error
+    }
+}
+
+/**
+ * 更新员工密码
+ * @param {Object} worker 
+ * @returns 
+ */
+WorkerUtil.updPwd = async (worker) => {
+    try {
+        const result = await Worker.updateOne({id: worker.id}, {password: worker.password})
+        if(result == null)throw Error
+        return result
+    } catch (error) {
+        throw error
+    }
+}
 module.exports = WorkerUtil
