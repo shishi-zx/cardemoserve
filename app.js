@@ -1,10 +1,10 @@
 //入口文件
+const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 const worker_router = require('./routers/worker')
 const index_router = require('./routers/index')
 const session = require('express-session')
-const path = require('path')
 const port = 7000
 
 const app = express()

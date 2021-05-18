@@ -18,6 +18,7 @@ router.post('/admin/login', async (req, res) => {
         })
         //记录下该管理员为本人使用
         req.session.isAdmin = true
+        req.session.isWorker = false
         res.json({
             code:1,
             message:'请求成功',
@@ -185,9 +186,9 @@ router.get('/admin/allcars', async (req, res) => {
 
 //请求添加汽车
 router.post('/admin/inscar', async (req, res) => {
-    if(!req.session.isAdmin)return res.json({
+    if(!(req.session.isAdmin||req.session.isWorker))return res.json({
         code:0,
-        message:'非管理员操作',
+        message:'非本人操作',
         data:null
     })
     const body = req.body
@@ -309,7 +310,7 @@ router.post('/admin/addcarorder', async (req, res) => {
 router.post('/admin/addpartorder', async (req, res) => {
     if(!(req.session.isAdmin||req.session.isWorker))return res.json({
         code:0,
-        message:'非管理员操作',
+        message:'非本人操作',
         data:null
     })
     const body = req.body
@@ -340,6 +341,7 @@ router.post('/worker/login', async (req,res) => {
         })
         //记录下该用户为职工使用
         req.session.isWorker = true
+        req.session.isAdmin = false
         res.json({
             code:1,
             message:'请求成功',
